@@ -25,11 +25,21 @@ app.get("/articiles", function(req, res){
   Article.find(function(err, foundArticles){
     if(!err){
       res.send(foundArticles);
+      console.log(foundArticles);
     }else{
       res.send(err);
     }
 
   })
+})
+
+app.post("/articiles", function(req, res){
+  const newArticle = new Article({
+    title:req.body.title,
+    content:req.body.content
+  });
+
+  newArticle.save();
 })
 
 app.listen(3000, function() {
