@@ -97,6 +97,18 @@ app.route("/articles/:articleTitle")
       }
     }
   )
+})
+
+.delete(function(req, res){
+  Article.deleteOne(
+    {title:req.params.articleTitle},
+    function(err){
+    if(!err){
+      res.send("Successfully deleted  "+ req.params.articleTitle + " article.");
+    }else{
+      res.send(err);
+    }
+  })
 });
 
 app.listen(3000, function() {
